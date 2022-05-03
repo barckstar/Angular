@@ -1,0 +1,7 @@
+<div class="jumbotron text-center">
+  <button class="btn btn-success btn-lg" (click)="tirarDados()">Tirar Dados</button>
+  <br>
+  <img class="img" [src]="dadoIzq"/>
+  <img class="img" [src]="dadoDer"/>
+  <h1 *ngIf="number1 === number2" ><samp class="badge bg-success"> Ganaste !!! </samp></h1>
+</div>

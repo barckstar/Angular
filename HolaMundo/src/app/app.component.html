@@ -1,0 +1,146 @@
+<div class="container mt-4">
+  <h1>Hola mundo ..!!!</h1>
+  <br>
+  <div class="row">
+    <h1>-------- Databinding --------</h1>
+    <h1>Hola mi nombre es {{nombre}}</h1>
+    <h3>La suma de 10 + 15 = {{getSuma(10,15)}}</h3>
+    <br><br>
+    
+    <h1>-------- Property binding --------</h1>
+    <input type="text" class="form-control" [placeholder]="textoPlaceholder" [disabled] = "deshabilitado">
+    <br>
+  </div>
+ <img [src]="imgSrc" alt="Img" width="400px" height="400px"/>
+ <br>
+ 
+ <h1>-------- Event binding --------</h1>
+ <h3>{{texto}}</h3>
+ <br>
+ <button class="btn btn-primary" (click)="camdiarTexto()">Click me</button>
+ <br>
+ 
+ <h1>-------- Tow way data binding --------</h1>
+ <input type="text" class="form-control" [placeholder]="textoPlaceholder" [(ngModel)]="textoTWDB">
+ <br>
+ <h3>{{textoTWDB}}</h3>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h1>-------- Directiva *ngFor --------</h1>
+    <h3>Listado de estudiantes</h3>
+      <br>
+      <table class="table">
+        <thead>
+          <th>Nro</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of listEstudiantes; let i = index ">
+            <td>{{ i + 1}}</td>
+            <td>{{estudiante.nombre}}</td>
+            <td>{{estudiante.estado}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+
+    <h1>-------- Directiva *ngIf --------</h1>
+    <h3>Listado de estudiantes</h3>
+    <br>
+    <button type="button" class="btn btn-primary ml-auto" (click)="toogle()">Toogle 1</button>
+    <table class="table" *ngIf = "mostar">
+      <thead>
+        <th>Nro</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of listEstudiantes; let i = index ">
+          <td>{{ i + 1}}</td>
+          <td>{{estudiante.nombre}}</td>
+          <td>{{estudiante.estado}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 *ngIf="!mostar">No hay registros para mostrar</h3>
+    
+    <h1>-------- Directiva * ngStyle--------</h1>
+    <h3>Listado de estudiantes</h3>
+    <br>
+    <button type="button" class="btn btn-primary" (click)="toogle2()" [ngStyle]="{'width': '10%'}">Toogle 2</button>
+    <table class="table" *ngIf = "mosta2">
+      <thead>
+        <th>Nro</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of listEstudiantes; let i = index ">
+          <td>{{ i + 1}}</td>
+          <td>{{estudiante.nombre}}</td>
+          <td [ngStyle]="{'font-style': estudiante.estado === 'Promocionado' ? 'italic' : 'normal'}">{{estudiante.estado}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 *ngIf="!mosta2">No hay registros para mostrar</h3>
+    <br>
+
+    <h1>-------- Directiva * ngClass--------</h1>
+    <h3>Listado de estudiantes</h3>
+    <br>
+    <button type="button" class="btn btn-primary" (click)="toogle3()" [ngStyle]="{'width': '10%'}">Toogle 3</button>
+    <table class="table" *ngIf = "mosta3">
+      <thead>
+        <th>Nro</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of listEstudiantes; let i = index ">
+          <td>{{ i + 1}}</td>
+          <td>{{estudiante.nombre}}</td>
+          <td [ngStyle]="{'font-style': estudiante.estado === 'Promocionado' ? 'italic' : 'normal'}">
+            <samp [ngClass]="estudiante.estado === 'Promocionado' ? ' badge bg-success' : 'badge bg-secondary'" >
+              {{estudiante.estado}}
+            </samp>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 *ngIf="!mosta3">No hay registros para mostrar</h3>
+  </div>
+  <br>
+
+  <h1>-------- Directiva * ngSwitch--------</h1>
+    <h3>Listado de estudiantes</h3>
+    <br>
+    <button type="button" class="btn btn-primary" (click)="toogle4()" [ngStyle]="{'width': '10%'}">Toogle 4</button>
+    <table class="table" *ngIf = "mosta4">
+      <thead>
+        <th>Nro</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of listEstudiantes; let i = index" [ngSwitch]="estudiante.estado">
+          <td>{{ i + 1}}</td>
+          <td>{{estudiante.nombre}}</td>
+          <td [ngStyle]="{'font-style': estudiante.estado === 'Promocionado' ? 'italic' : 'normal'}">
+            <samp *ngSwitchCase="'Promocionado'" class="badge bg-success">
+              {{estudiante.estado}}
+            </samp>
+            <samp *ngSwitchCase="'Regular'" class="badge bg-secondary">
+              {{estudiante.estado}}
+            </samp>
+            <samp *ngSwitchCase="'Libre'" class="badge bg-danger">
+              {{estudiante.estado}}
+            </samp>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 *ngIf="!mosta4">No hay registros para mostrar</h3>
+</div>
